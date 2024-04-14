@@ -1,0 +1,29 @@
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    command: pnpm run start:dev api-gateway
+  
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    volumes:
+      - .:/usr/src/app
+    command: pnpm run start:dev auth
+
+  task:
+    build:
+      context: .
+      dockerfile: ./apps/task/Dockerfile
+      target: development
+    volumes:
+      - .:/usr/src/app
+    command: pnpm run start:dev task
