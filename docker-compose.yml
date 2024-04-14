@@ -4,26 +4,44 @@ services:
       context: .
       dockerfile: ./apps/api-gateway/Dockerfile
       target: development
+    env_file:
+      - ./apps/api-gateway/.env
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - .:/usr/src/app
     command: pnpm run start:dev api-gateway
-  
+
   auth:
     build:
       context: .
       dockerfile: ./apps/auth/Dockerfile
       target: development
+    env_file:
+      - ./apps/auth/.env
     volumes:
       - .:/usr/src/app
     command: pnpm run start:dev auth
+    depends_on:
+      - mysql
 
   task:
     build:
       context: .
       dockerfile: ./apps/task/Dockerfile
       target: development
+    env_file:
+      - ./apps/task/.env
     volumes:
       - .:/usr/src/app
     command: pnpm run start:dev task
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.3
+    container_name: mysql
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
