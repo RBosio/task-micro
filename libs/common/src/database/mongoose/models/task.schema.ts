@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { AbstractDocument } from './abstract.schema';
+import { AbstractDocument } from '../abstract.schema';
 
 @Schema({ versionKey: false })
 export class TaskDocument extends AbstractDocument {
