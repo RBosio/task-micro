@@ -3,6 +3,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+import { MySqlModule } from '@app/common';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import * as Joi from 'joi';
         MYSQL_URI: Joi.string().required(),
       }),
     }),
+    MySqlModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],
