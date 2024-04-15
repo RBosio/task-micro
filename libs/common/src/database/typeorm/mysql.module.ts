@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
+import { EntityClassOrSchema } from '@nestjs/typeorm/dist/interfaces/entity-class-or-schema.type';
 
 @Module({
   imports: [
@@ -13,4 +14,8 @@ import { ConfigService } from '@nestjs/config';
     }),
   ],
 })
-export class MySqlModule {}
+export class MySqlModule {
+  static forFeature(entities: EntityClassOrSchema[]) {
+    return TypeOrmModule.forFeature(entities);
+  }
+}

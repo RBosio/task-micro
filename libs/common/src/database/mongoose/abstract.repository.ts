@@ -1,7 +1,7 @@
 import { FilterQuery, Model, Types, UpdateQuery } from 'mongoose';
 import { AbstractDocument } from './abstract.schema';
 
-export class AbstractRepository<TDocument extends AbstractDocument> {
+export class AbstractMongooseRepository<TDocument extends AbstractDocument> {
   constructor(private readonly model: Model<TDocument>) {}
 
   async create(document: Omit<TDocument, '_id'>): Promise<TDocument> {
