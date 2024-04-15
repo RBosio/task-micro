@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { LoggerModule, MySqlModule } from '@app/common';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { LoggerModule, MySqlModule } from '@app/common';
     }),
     MySqlModule,
     LoggerModule,
+    UserModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],
