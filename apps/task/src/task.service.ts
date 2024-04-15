@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { TaskRepository } from './task.repository';
 
 @Injectable()
 export class TaskService {
-  getHello(): string {
-    return 'Hello World!';
-  }
+  constructor(private taskRepository: TaskRepository) {}
 }

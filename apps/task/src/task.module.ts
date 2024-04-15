@@ -4,6 +4,7 @@ import { TaskService } from './task.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { MongoModule, TaskDocument, TaskSchema } from '@app/common';
+import { TaskRepository } from './task.repository';
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { MongoModule, TaskDocument, TaskSchema } from '@app/common';
     MongoModule.forFeature([{ name: TaskDocument.name, schema: TaskSchema }]),
   ],
   controllers: [TaskController],
-  providers: [TaskService],
+  providers: [TaskService, TaskRepository],
 })
 export class TaskModule {}
