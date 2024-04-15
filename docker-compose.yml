@@ -12,6 +12,8 @@ services:
     volumes:
       - .:/usr/src/app
     command: pnpm run start:dev api-gateway
+    depends_on:
+      - rabbitmq
 
   auth:
     container_name: auth
@@ -26,6 +28,7 @@ services:
     command: pnpm run start:dev auth
     depends_on:
       - mysql
+      - rabbitmq
 
   task:
     container_name: task
@@ -40,6 +43,7 @@ services:
     command: pnpm run start:dev task
     depends_on:
       - mongo
+      - rabbitmq
 
   mysql:
     image: mysql:8.3

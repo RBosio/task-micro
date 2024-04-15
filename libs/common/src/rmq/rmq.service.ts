@@ -6,7 +6,7 @@ import { RmqContext, RmqOptions, Transport } from '@nestjs/microservices';
 export class RmqService {
   constructor(private configService: ConfigService) {}
 
-  getRmqOptions(name: string, noAck: boolean = true): RmqOptions {
+  getRmqOptions(name: string, noAck: boolean = false): RmqOptions {
     return {
       transport: Transport.RMQ,
       options: {
@@ -14,7 +14,7 @@ export class RmqService {
         queue: this.configService.get<string>(`RABBITMQ_${name}_QUEUE`),
         noAck,
         queueOptions: {
-          durable: false,
+          durable: true,
         },
       },
     };
